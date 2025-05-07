@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+    <div class="container">
+        <h1 class="title">File Conversion & PDF Tools</h1>
+
+        <!-- Conversion Tools -->
+        <section id="convert" class="feature-section">
+            <h3>Conversion Tools</h3>
+            <form action="/convert" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Convert">
+            </form>
+        </section>
+
+        <!-- Compression & Encryption -->
+        <section id="compress" class="feature-section">
+            <h3>Compress & Encrypt PDFs</h3>
+            <form action="/pdf_compress" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Compress PDF">
+            </form>
+
+            <form action="/pdf_encrypt" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="password" name="password" placeholder="Enter Password" required>
+                <input type="submit" value="Encrypt PDF">
+            </form>
+        </section>
+
+        <!-- Edit & Organize -->
+        <section id="edit" class="feature-section">
+            <h3>Edit & Organize PDFs</h3>
+            <form action="/pdf_split" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Split PDF">
+            </form>
+
+            <form action="/pdf_merge" method="post" enctype="multipart/form-data">
+                <input type="file" name="files" multiple required>
+                <input type="submit" value="Merge PDFs">
+            </form>
+        </section>
+
+        <!-- Text & Audio Processing -->
+        <section id="text" class="feature-section">
+            <h3>Text & Audio Processing</h3>
+            <form action="/extract_text" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Extract Text">
+            </form>
+
+            <form action="/summarize_text" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Summarize Text">
+            </form>
+
+            <form action="/video_to_audio" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Extract Audio">
+            </form>
+
+            <form action="/audio_translate" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Translate Audio">
+            </form>
+        </section>
+
+        <!-- Download Section -->
+        {% if download_file %}
+            <div class="result-box">
+                <a href="{{ url_for('download', filename=download_file) }}" class="btn btn-primary">Download File</a>
+            </div>
+        {% endif %}
+
+        {% if split_files %}
+            <div class="result-box">
+                <h5>Download Split Files:</h5>
+                {% for file in split_files %}
+                    <a href="{{ url_for('download', filename=file) }}" class="btn btn-secondary">Download {{ file }}</a>
+                    <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if text_output %}
+            <div class="result-box">
+                <h5>Extracted Text:</h5>
+                <textarea rows="10" class="form-control">{{ text_output }}</textarea>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
