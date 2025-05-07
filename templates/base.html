@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Meta6 - File Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="AI-Meta6 Logo">
+            <span>AI-Meta6</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#convert">Convert</a>
+            <a href="#compress">Compress & Encrypt</a>
+            <a href="#edit">Edit & Organize</a>
+            <a href="#text">Text & Audio Processing</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block bodyblock %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AI-Meta6. All Rights Reserved.</p>
+    </footer>
+</body>
+<script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    Chatbot.init({
+        chatflowid: "8a573284-d306-4c9b-ac63-7c0aff98181c",
+        apiHost: "https://flowise-by37.onrender.com",
+    })
+</script>
+</html>
