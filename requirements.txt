@@ -1,0 +1,7 @@
+Flask
+pdf2docx
+pytesseract
+pdf2image
+python-docx
+pillow
+openai-whisper==20231117
